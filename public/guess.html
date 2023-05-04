@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhe </title>
+    <link rel="icon" type="image/svg+xml"
+        href="https://cdn.discordapp.com/attachments/1067744916651900942/1091161408261066932/f3f350bd03f37534896b775ca9c1a0f0-modified_1.png" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #121214;
+            color: #fff;
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        #resultado {
+            background-color: #fff;
+            width: 100px;
+            height: 100px;
+            margin: 1rem auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            display: block;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+            border: 0;
+            border-radius: 0.5rem;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        button {
+            display: block;
+            margin: 0 auto;
+            padding: 0.5rem 1rem;
+            border: 0;
+            border-radius: 0.5rem;
+            background-color: #fff;
+            color: #000;
+            margin-top: 1rem;
+            transition: 0.2s;
+            cursor: pointer;
+            border: 1px solid #fff;
+        }
+
+        button:hover {
+            background-color: #000;
+            color: #fff;
+
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <main>
+        <div class="container">
+            <h1>Adivinhe um número de 1 a 99 aí</h1>
+            <input id="chute" type="text" placeholder="Coloque o número aqui">
+            <button onclick="chutar()">Chutar</button>
+            <div id="resultado"></div>
+
+        </div>
+    </main>
+    <script>
+        let numero = gerar_numero();
+        console.log(numero)
+
+
+        function gerar_numero() {
+            let numero_gerado = Math.floor(Math.random() * 99) + 1;
+            return numero_gerado
+        }
+
+        function chutar() {
+            var chute = document.getElementById("chute").value;
+
+
+            if (chute == numero) {
+                document.getElementById("resultado").innerHTML = numero;
+                document.getElementById("resultado").style.setProperty('background-color', 'green', 'important')
+                return numero = gerar_numero(), console.log(numero);
+
+
+            } else if (chute > numero) {
+                document.getElementById("resultado").innerHTML = "Menor";
+                document.getElementById("resultado").style.setProperty('background-color', 'red', 'important')
+            } else if (chute < numero) {
+                document.getElementById("resultado").innerHTML = "Maior";
+                document.getElementById("resultado").style.setProperty('background-color', 'red', 'important')
+            }
+        }
+    </script>
+</body>
+
+</html>

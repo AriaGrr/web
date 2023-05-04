@@ -1,0 +1,32 @@
+/* PROJECTS */
+
+main {
+    margin-top: 10rem;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    border: 1px solid #fff;
+    margin: 0 auto;
+    margin-top: 2rem;
+    
+}
+
+th {
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    text-align: center;
+    background: #fff;
+    color: #000;
+}
+
+td {
+    border: 1px solid #fff;
+    padding: 0.5rem;
+    text-align: center;
+}
+td a{
+    text-decoration: none;
+    color: #fff;
+}
