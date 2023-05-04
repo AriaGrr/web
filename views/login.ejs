@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cadastro</title>
+
+    <style>
+        :root {
+
+            --gray-100: #e1e1e6;
+            --gray-300: #c4c4cc;
+            --gray-900: #121214;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--gray-900);
+            color: var(--gray-300);
+            -webkit-fot-smoothing: antialiased;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        main {
+            display: flex;
+            height: 100vh;
+            align-items: center;
+        }
+
+        .wrapper {
+            display: block;
+            border: 1px solid var(--gray-300);
+            width: 500px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        h1 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <div class="wrapper">
+            <h1>Login realizado com sucesso!</h1>
+            <div>
+                <p>Nome: <%= nome %></p>
+                <p>Senha: <%= senha %></p>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

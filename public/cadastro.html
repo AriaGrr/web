@@ -5,8 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
+    <link rel="stylesheet" href="assets/css/cadastro.css">
 </head>
 <body>
-    
+    <main>
+        <div class="wrapper">
+            <h1>Cadastro</h1>
+            <div>
+                <form id="cadastro-form" action="/cadastrar" method="post">
+                    <input type="text" name="nome" placeholder="Username" />
+                    <input type="password" name="senha" placeholder="Senha" />
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </div>
+            <div>
+                Já possui um login? <a href="login.html">Entre</a>
+            </div>
+        </div>
+    </main>
+      
 </body>
 </html>
