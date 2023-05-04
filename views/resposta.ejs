@@ -7,10 +7,13 @@
 
     <style>
         :root {
-
+            --white: #fff;
             --gray-100: #e1e1e6;
             --gray-300: #c4c4cc;
             --gray-900: #121214;
+            --green-300: #00b37e;
+            --green-500: #00875f;
+
         }
 
         * {
@@ -49,6 +52,23 @@
             margin-bottom: 1rem;
             font-size: 1.5rem;
         }
+
+        button {
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            background-color: var(--green-300);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        button:hover {
+            background-color: var(--green-500);
+            transition: 0.5s;
+        }
     </style>
 </head>
 
@@ -60,6 +80,11 @@
             <div>
                 <p>Nome: <%= nome %></p>
                 <p>Senha: <%= senha %></p>
+            </div>
+            <div>
+                <a href="/login.html">
+                    <button> Retornar</button>
+                </a>
             </div>
         </div>
     </main>
