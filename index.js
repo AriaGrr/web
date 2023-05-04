@@ -15,13 +15,15 @@ const server = http.createServer(app);
 app.post('/cadastrar', (req, res) => {
   const nome = req.body.nome;
   const senha = req.body.senha;
-  res.render('cadastro', { nome, senha });
+  const processo = "Cadastro"
+  res.render('resposta', { nome, senha, processo });
 });
 
 app.get('/login', (req, res) => {
   const nome = req.query.nome;
   const senha = req.query.senha;
-  res.render('login', { nome, senha });
+  const processo = "Login"
+  res.render('resposta', { nome, senha, processo });
 });
 
 server.listen(80, () => {
