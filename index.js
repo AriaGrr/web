@@ -10,5 +10,5 @@ var server = http.createServer(app);
 
 server.listen (80);
 
-console.log("Server running at http://");
+console.log("Muito bom at http://");
 
