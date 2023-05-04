@@ -1,6 +1,9 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
+ctx.font = "20px Arial";
+ctx.fillText("Canvas", 115, 60);
+
 ctx.fillStyle = "red";
 ctx.fillRect(110, 150, 40, 40);
 

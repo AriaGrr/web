@@ -4,11 +4,10 @@ var express = require('express');
 
 var app = express();
 
-app.use( express.static('./public'));
+app.use(express.static('./public/projects.html'));
 
 var server = http.createServer(app);
 
-server.listen (80);
+server.listen(80);
 
-console.log("Muito bom at http://");
-
+console.log("Running at http://localhost:80");
