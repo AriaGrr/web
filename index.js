@@ -1,31 +1,90 @@
-const http = require('http');
-const express = require('express');
-const bodyParser = require('body-parser');
+const http = require("http");
+const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 
-app.use(express.static('./public'));
+app.use(express.static("./public"));
 
-app.set('view engine', 'ejs')
-app.set('views', './views');
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const server = http.createServer(app);
 
-app.post('/cadastrar', (req, res) => {
-  const nome = req.body.nome;
-  const senha = req.body.senha;
-  const processo = "Cadastro"
-  res.render('resposta', { nome, senha, processo });
+logins = [];
+
+// Rota GET para a página inicial
+app.get("/", (req, res) => {
+  res.redirect("projects.html");
 });
 
-app.get('/login', (req, res) => {
-  const nome = req.query.nome;
-  const senha = req.query.senha;
-  const processo = "Login"
-  res.render('resposta', { nome, senha, processo });
+// Rota POST para lidar com solicitações de cadastro
+app.post("/cadastrar", (req, res) => {
+  const nome = req.body.nome;
+  const senha = req.body.senha;
+  let mensagem = "Cadastro relizado com sucesso";
+
+  // Verifica se o limite máximo de usuários foi atingido
+  if (logins.length >= 10) {
+    mensagem = "Limite máximo de usuários atingido";
+    res.render("resposta", {
+      nome: "",
+      senha: "",
+      mensagem,
+    });
+    return;
+  }
+
+  // Verifica se o login já existe no array
+  const loginExistente = logins.find((l) => l.nome === nome);
+  if (loginExistente) {
+    mensagem = "Login já cadastrado";
+    res.render("resposta", {
+      nome: "",
+      senha: "",
+      mensagem,
+    });
+    return;
+  }
+
+  // Adiciona o novo login ao array
+  logins.push({ nome, senha });
+
+  res.render("resposta", {
+    nome: "Nome: " + nome,
+    senha: "Senha: " + senha,
+    mensagem,
+  });
+});
+
+// Rota POST para lidar com solicitações de login
+app.post("/login", (req, res) => {
+  const nome = req.body.nome;
+  const senha = req.body.senha;
+  let mensagem = "Login realizado com sucesso";
+
+  // Busca o usuário no array de logins
+  const usuario = logins.find((l) => l.nome === nome && l.senha === senha);
+  if (usuario) {
+    // Informações de login corretas
+    res.render("resposta", {
+      nome: "Nome: " + nome,
+      senha: "Senha: " + senha,
+      mensagem,
+    });
+  } else {
+    // Informações de login incorretas
+    mensagem = "Nome de usuário ou senha incorretos";
+    res.render("resposta", {
+      nome: "",
+      senha: "",
+      mensagem,
+    });
+    return;
+  }
 });
 
 server.listen(80, () => {
-  console.log('Running at http://localhost:80');
+  console.log("Running at http://localhost:80");
 });
