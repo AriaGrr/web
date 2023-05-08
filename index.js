@@ -124,7 +124,6 @@ app.post("/products", (req, res) => {
     produto,
     valor
   });
-console.log(products);
   res.render("products", {
     produto: "Produto: " + produto,
     valor: "Preço: " + valor,
@@ -132,7 +131,19 @@ console.log(products);
   });
 });
 
+app.get("/listUsers", (req, res) => {
+  res.render("listUsers", {
+    logins
+  });
+})
+app.get("/listProducts", (req, res) => {
+  res.render("listProducts", {
+    products
+  });
+})
+
+
 server.listen(80, () => {
   console.log("Running at http://localhost:80");
- 
+
 });

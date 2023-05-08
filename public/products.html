@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,18 +9,23 @@
     <link rel="stylesheet" href="assets/css/cadastro.css">
     <title>Produtos</title>
 </head>
+
 <body>
-        <main>
-            <div class="wrapper">
-                <h1>Cadastrar Produto</h1>
-                <div>
-                    <form id="cadastro-form" action="/products" method="post">
-                        <input required type="text" name="produto" placeholder="Nome do produto" />
-                        <input type ="number" name="valor" placeholder="Valor do produto" required/>
-                        <button type="submit">Cadastrar</button>
-                    </form>
-                </div>
+    <main>
+        <div class="wrapper">
+            <h1>Cadastrar Produto</h1>
+            <div>
+                <form id="cadastro-form" action="/products" method="post">
+                    <input required type="text" name="produto" placeholder="Nome do produto" />
+                    <input type="number" name="valor" placeholder="Valor do produto" required />
+                    <button type="submit">Cadastrar</button>
+                </form>
             </div>
-        </main>
+            <a href="mano.html">
+                <button style="background: #c44f1c;">Menu inicial</button>
+            </a>
+        </div>
+    </main>
 </body>
+
 </html>

@@ -73,6 +73,8 @@ button {
   cursor: pointer;
   background-color: var(--green-300);
   color: var(--white);
+  width: 100%;
+  border: 0;
 }
 
 button:hover {
@@ -82,4 +84,8 @@ button:hover {
 
 a {
   color: #fff;
+}
+
+ul {
+  list-style-type: none;
 }
