@@ -8,11 +8,14 @@ app.use(express.static("./public"));
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 const server = http.createServer(app);
 
 logins = [];
+products = [];
 
 // Rota GET para a página inicial
 app.get("/", (req, res) => {
@@ -49,7 +52,10 @@ app.post("/cadastrar", (req, res) => {
   }
 
   // Adiciona o novo login ao array
-  logins.push({ nome, senha });
+  logins.push({
+    nome,
+    senha
+  });
 
   res.render("resposta", {
     nome: "Nome: " + nome,
@@ -85,6 +91,48 @@ app.post("/login", (req, res) => {
   }
 });
 
+// Produtos
+app.post("/products", (req, res) => {
+  const produto = req.body.produto;
+  const valor = req.body.valor;
+  let mensagem = "Produto cadastrado com sucesso";
+
+  //   // Verifica se o limite máximo de usuários foi atingido
+  if (products.length >= 10) {
+    mensagem = "Limite máximo de produtos atingido";
+    res.render("products", {
+      produto: "",
+      valor: "",
+      mensagem,
+    });
+    return;
+  }
+
+  // Verifica se o login já existe no array
+  const existingProduct = products.find((l) => l.produto === produto);
+  if (existingProduct) {
+    mensagem = "Produto já cadastrado";
+    res.render("products", {
+      produto: "",
+      valor: "",
+      mensagem,
+    });
+    return;
+  }
+  // Adiciona o novo login ao array
+  products.push({
+    produto,
+    valor
+  });
+console.log(products);
+  res.render("products", {
+    produto: "Produto: " + produto,
+    valor: "Preço: " + valor,
+    mensagem,
+  });
+});
+
 server.listen(80, () => {
   console.log("Running at http://localhost:80");
+ 
 });

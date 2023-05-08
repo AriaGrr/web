@@ -38,7 +38,7 @@ main {
 .wrapper {
   display: block;
   border: 1px solid var(--gray-300);
-  width: 300px;
+  width: 350px;
   margin: 0 auto;
   padding: 1rem;
 }
