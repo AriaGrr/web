@@ -2,6 +2,8 @@ const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/web');
 
 app.use(express.static("./public"));
 
