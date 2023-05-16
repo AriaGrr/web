@@ -189,14 +189,7 @@ app.get("/blog", (req, res) => {
   });
 });
 
-app.listen(8888, () => {
-  console.log("Running at http://localhost:80");
+app.listen({
+  host: "0.0.0.0",
+  port: process.env.PORT ? Number(process.env.PORT) : 3000,
 });
-app
-  .listen({
-    host: "0.0.0.0",
-    port: process.env.PORT ? Number(process.env.PORT) : 3000,
-  })
-  .then(() => {
-    console.log("Running");
-  });
