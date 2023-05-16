@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+</head>
+<body>
+  <h1>Posts do Blog</h1>
+  <% posts.forEach((post) => { %>
+    <div>
+      <h2><%= post.titulo %></h2>
+      <p><%= post.resumo %></p>
+      <p><%= post.conteudo %></p>
+    </div>
+  <% }); %>
+</body>
+</html>

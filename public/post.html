@@ -9,7 +9,20 @@
 </head>
 <body>
     <main>
-        
+        <div class="wrapper">
+            <h1>Post</h1>
+            <div>
+                <form action="/blog" method="POST">
+                    <input type="text" name="titulo" placeholder="Titulo" />
+                    <input type="text" name="resumo" placeholder="Resumo" />
+                    <input type="text" name="conteudo" placeholder="Conteúdo" />
+                    <button type="submit">Postar</button>
+                </form>
+            </div>
+            <a href="blog.html">
+                <button style="background: #c44f1c; margin-top: 2rem;">Voltar</button>
+            </a>
+        </div>
     </main>
 </body>
 </html>

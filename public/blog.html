@@ -1,17 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
-    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <!-- <link rel="stylesheet" href="assets/css/cadastro.css"> -->
+    <style>
+        :root {
+          --white: #fff;
+          --gray-100: #e1e1e6;
+          --gray-300: #c4c4cc;
+          --gray-400: #8d8d99;
+          --gray-600: #323238;
+          --gray-700: #29292e;
+          --gray-900: #121214;
+          --green-300: #00b37e;
+          --green-500: #00875f;
+          --red-500: #f75a68;
+        }
+    
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+    
+        body {
+          background: var(--gray-900);
+          color: var(--gray-300);
+          -webkit-font-smoothing: antialiased;
+          font-family: sans-serif;
+          text-align: center;
+        }
+    
+        main {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+        }
+    
+        .wrapper {
+          display: block;
+          border: 1px solid var(--gray-300);
+          width: 350px;
+          margin: 0 auto;
+          padding: 1rem;
+        }
+    
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+    
+        input {
+          padding: 0.5rem 1rem;
+          margin-bottom: 1rem;
+        }
+    
+        h1 {
+          text-transform: uppercase;
+          text-align: center;
+          margin-bottom: 2rem;
+        }
+    
+        input::placeholder {
+          text-align: center;
+        }
+    
+        button {
+          padding: 0.5rem 1rem;
+          margin-bottom: 2rem;
+          cursor: pointer;
+          background-color: var(--green-300);
+          color: var(--white);
+          width: 100%;
+          border: 0;
+        }
+    
+        button:hover {
+          background-color: var(--green-500);
+          transition: 0.5s;
+        }
+    
+        a {
+          color: #fff;
+        }
+    
+        ul {
+          list-style-type: none;
+        } 
+      </style>
 </head>
+
 <body>
-    <main>
+    <nav>
         <button>
             <a href="post.html">Criar Post</a>
         </button>
+    </nav>
+    <main>
+        <div class="wrapper">
+            <h1>Blog</h1>
+            <div id="posts">
+                <!-- Os posts serão adicionados dinamicamente aqui -->
+            </div>
+        </div>
     </main>
+    <footer>
+        <script>
+            // JavaScript para buscar e exibir os posts no blog.html
+            fetch('/blog')
+                .then(response => response.json())
+                .then(posts => {
+                    const postsContainer = document.getElementById('posts');
+
+                    posts.forEach(post => {
+                        const postElement = document.createElement('div');
+                        postElement.classList.add('post');
+
+                        const titleElement = document.createElement('h2');
+                        titleElement.textContent = post.titulo;
+
+                        const summaryElement = document.createElement('p');
+                        summaryElement.textContent = post.resumo;
+
+                        const contentElement = document.createElement('p');
+                        contentElement.textContent = post.conteudo;
+
+                        postElement.appendChild(titleElement);
+                        postElement.appendChild(summaryElement);
+                        postElement.appendChild(contentElement);
+
+                        postsContainer.appendChild(postElement);
+                    });
+                });
+        </script>
+    </footer>
 </body>
+
 </html>
