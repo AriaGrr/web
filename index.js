@@ -2,12 +2,13 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 mongoose
-  .connect(
-    "mongodb+srv://wanderson_1:RgrGei1JCleKxqer@cluster0.cpzhubw.mongodb.net/",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Conexão com o MongoDB estabelecida com sucesso.");
   })
