@@ -170,9 +170,9 @@ app.post("/blog", (req, res) => {
     novoPost.save();
   } catch (err) {
     console.log(err);
-    res.render("error", { mensagem: "Erro ao salvar o post" });
+    res.json({ mensagem: "Erro ao salvar o post" });
   }
-  res.render("success", { mensagem: "Post salvo com sucesso" });
+  res.render("blog", { mensagem: "Post salvo com sucesso" });
 });
 
 // Rota GET para a página do blog
