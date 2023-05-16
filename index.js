@@ -1,14 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://localhost:27017/web', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(
+    "mongodb+srv://wanderson_1:RgrGei1JCleKxqer@cluster0.cpzhubw.mongodb.net/",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+  )
   .then(() => {
-    console.log('Conexão com o MongoDB estabelecida com sucesso.');
+    console.log("Conexão com o MongoDB estabelecida com sucesso.");
   })
   .catch((error) => {
-    console.error('Erro ao conectar ao MongoDB:', error);
+    console.error("Erro ao conectar ao MongoDB:", error);
   });
 
 app.use(express.static("./public"));
@@ -58,7 +62,7 @@ app.post("/cadastrar", (req, res) => {
   // Adiciona o novo login ao array
   logins.push({
     nome,
-    senha
+    senha,
   });
 
   res.render("resposta", {
@@ -114,7 +118,7 @@ app.post("/products", (req, res) => {
   // Adiciona o novo produto ao array
   products.push({
     produto,
-    valor
+    valor,
   });
 
   res.render("products", {
@@ -126,13 +130,13 @@ app.post("/products", (req, res) => {
 
 app.get("/listUsers", (req, res) => {
   res.render("listUsers", {
-    logins
+    logins,
   });
 });
 
 app.get("/listProducts", (req, res) => {
   res.render("listProducts", {
-    products
+    products,
   });
 });
 
@@ -140,11 +144,11 @@ app.get("/listProducts", (req, res) => {
 const postSchema = new mongoose.Schema({
   titulo: String,
   resumo: String,
-  conteudo: String
+  conteudo: String,
 });
 
 // Criando um modelo para os posts com base no esquema
-const Post = mongoose.model('Post', postSchema);
+const Post = mongoose.model("Post", postSchema);
 
 // Rota POST para lidar com solicitações de blog
 app.post("/blog", (req, res) => {
@@ -156,19 +160,18 @@ app.post("/blog", (req, res) => {
   const novoPost = new Post({
     titulo,
     resumo,
-    conteudo
+    conteudo,
   });
 
   // Salvando o novo post no banco de dados
-  novoPost.save((err) => {
-    if (err) {
-      console.error(err);
-      // Tratar o erro de salvamento, se necessário
-      res.render("error", { mensagem: "Erro ao salvar o post" });
-    } else {
-      res.render("success", { mensagem: "Post salvo com sucesso" });
-    }
-  });
+  // Tratar o erro de salvamento, se necessário
+  try {
+    novoPost.save();
+  } catch (err) {
+    console.log(err);
+    res.render("error", { mensagem: "Erro ao salvar o post" });
+  }
+  res.render("success", { mensagem: "Post salvo com sucesso" });
 });
 
 // Rota GET para a página do blog
