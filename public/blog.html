@@ -29,7 +29,7 @@
     <script>
         let posts;
         window.addEventListener('load', async () => {
-            await fetch('http://localhost:3000/getPosts').then((response) => {
+            await fetch('/getPosts').then((response) => {
                 response.json().then((data) => {
                     posts = data;
                     displayPosts();
