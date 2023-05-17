@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,16 @@
     <title>Post</title>
     <link rel="stylesheet" href="assets/css/cadastro.css">
 </head>
+
 <body>
     <main>
         <div class="wrapper">
             <h1>Post</h1>
             <div>
-                <form action="/blog" method="POST">
+                <form action="/createPost" method="POST">
                     <input type="text" name="titulo" placeholder="Titulo" />
                     <input type="text" name="resumo" placeholder="Resumo" />
-                    <input type="text" name="conteudo" placeholder="Conteúdo" />
+                    <textarea type="text" name="conteudo" placeholder="Conteúdo"></textarea>
                     <button type="submit">Postar</button>
                 </form>
             </div>
@@ -25,4 +27,5 @@
         </div>
     </main>
 </body>
+
 </html>

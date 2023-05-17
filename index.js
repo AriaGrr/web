@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+//realiza a conexão com a database
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -149,16 +150,14 @@ const postSchema = new mongoose.Schema({
 });
 
 // Criando um modelo para os posts com base no esquema
-const Post = mongoose.model("Post", postSchema);
+const blogPost = mongoose.model("Post", postSchema);
 
 // Rota POST para lidar com solicitações de blog
-app.post("/blog", (req, res) => {
-  const titulo = req.body.titulo;
-  const resumo = req.body.resumo;
-  const conteudo = req.body.conteudo;
+app.post("/createPost", (req, res) => {
+  const { titulo, resumo, conteudo } = req.body;
 
   // Criando uma nova instância do modelo Post
-  const novoPost = new Post({
+  const novoPost = new blogPost({
     titulo,
     resumo,
     conteudo,
@@ -169,27 +168,26 @@ app.post("/blog", (req, res) => {
   try {
     novoPost.save();
   } catch (err) {
-    console.log(err);
-    res.json({ mensagem: "Erro ao salvar o post" });
+    res.status(500).json({ mensagem: "Erro ao salvar o post" });
   }
-  res.render("blog", { mensagem: "Post salvo com sucesso" });
+  res.render("success", { mensagem: "Post salvo com sucesso" });
 });
 
-// Rota GET para a página do blog
-app.get("/blog", (req, res) => {
-  // Recupere os posts do banco de dados usando o modelo Post
-  Post.find({}, (err, posts) => {
-    if (err) {
-      console.error(err);
-      // Tratar o erro de recuperação dos posts, se necessário
-      res.render("error", { mensagem: "Erro ao recuperar os posts do blog" });
-    } else {
-      res.render("blog.ejs", { posts });
-    }
-  });
+// Define the route for `getPosts`.
+app.get("/getPosts", async (req, res) => {
+  // Get all the posts from the database.
+  const posts = await blogPost.find();
+
+  // Set the content type of the response to JSON.
+  res.set("Content-Type", "application/json");
+
+  // Convert the list of posts to JSON.
+  const jsonPosts = JSON.stringify(posts);
+  // Write the JSON response to the response stream.
+  res.write(jsonPosts);
+  res.end();
 });
 
-app.listen({
-  host: "0.0.0.0",
-  port: process.env.PORT ? Number(process.env.PORT) : 3000,
+app.listen(8888, () => {
+  console.log("Running at http://localhost:80");
 });
