@@ -170,7 +170,7 @@ app.post("/createPost", (req, res) => {
   } catch (err) {
     res.status(500).json({ mensagem: "Erro ao salvar o post" });
   }
-  res.render("success", { mensagem: "Post salvo com sucesso" });
+  res.render("createdPost", { post: novoPost });
 });
 
 // Define the route for `getPosts`.
@@ -188,6 +188,13 @@ app.get("/getPosts", async (req, res) => {
   res.end();
 });
 
-app.listen(8888, () => {
-  console.log("Running at http://localhost:80");
-});
+let port = process.env.PORT ? Number(process.env.PORT) : 3000;
+try {
+  app.listen({
+    host: "0.0.0.0",
+    port,
+  });
+} catch (err) {
+  console.error(err);
+}
+console.log(`Servidor iniciado em http://localhost:${port}`);
